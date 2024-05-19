@@ -6,12 +6,23 @@ import icons
 from ultralytics import YOLO
 import os
 import shutil
+import requests
 
 # Установка FLET_SECRET_KEY, если он не установлен
 if not os.getenv("FLET_SECRET_KEY"):
     os.environ["FLET_SECRET_KEY"] = os.urandom(12).hex()
+def join_files(part_files, output_file):
+    with open(output_file, 'wb') as output:
+        for part_file in part_files:
+            with open(part_file, 'rb') as pf:
+                output.write(pf.read())
+    print('Файлы склеены!')
+
 
 def main(page: ft.Page):
+
+    part_files = ['./assets/part-00-DermDiagnose_YOLOv8m_256x256_20_epoch_best.pt', './assets/part-01-DermDiagnose_YOLOv8m_256x256_20_epoch_best.pt']
+    join_files(part_files, './assets/DermDiagnose_YOLOv8m_256x256_20_epoch_best.pt')
 
     page.title = "DermDiagnose"
 
