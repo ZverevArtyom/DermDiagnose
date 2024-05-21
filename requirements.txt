@@ -2,3 +2,4 @@ flet==0.22.0
 flet-core==0.22.0
 flet-runtime==0.22.0
 ultralytics==8.2.7
+torch==1.10.2
